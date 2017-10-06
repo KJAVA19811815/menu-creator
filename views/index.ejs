@@ -1,0 +1,25 @@
+<% include ./partials/_header %>
+
+  <body>
+    <h2>All the menus</h2>
+
+    <table style="width:100%">
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Image</th>
+      </tr>
+
+    <% menus.forEach(function(blog){ %>
+        <tr>
+          <td><%= blog.name %></td>
+          <td><%= blog.price %></td>
+          <td><%= blog.description %></td>
+          <td><%= blog.image %></td>
+        </tr>
+      </table>
+    <% }) %>
+
+  </body>
+</html>
