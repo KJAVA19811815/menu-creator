@@ -3,23 +3,21 @@
   <body>
     <h2>All the menus</h2>
 
-    <table style="width:100%">
-      <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Description</th>
-        <th>Image</th>
-      </tr>
-
-    <% menus.forEach(function(blog){ %>
-        <tr>
-          <td><%= blog.name %></td>
-          <td><%= blog.price %></td>
-          <td><%= blog.description %></td>
-          <td><%= blog.image %></td>
-        </tr>
-      </table>
-    <% }) %>
+    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+    <% menus.forEach(function(menu) { %>
+      <div class="col-md-4 col-sm-6">
+        <div class="thumbnail">
+          <img src="<%=menu.image%>">
+          <div class="caption">
+            <h4><%= menu.name %></h4>
+            <h4><%= menu.price %></h4>
+            <h4><%= menu.description %></h4>
+          </div>
+       </div>
+      </div>
+    <%});%>
+  </div>
+  <a href="/menus/new">CREATE THE MENU</a>
 
   </body>
 </html>

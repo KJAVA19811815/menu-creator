@@ -19,6 +19,49 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.post("/menus", (req, res) => {
+  let username = req.body.username;
+  let password = req.body.password;
+
+  if (!username || !password) {
+    res.status(200).redirect("/login");
+  } else {
+    knex("users")
+      .select("username", "password")
+      .from("users")
+      .where("username", "=", username)
+      .andWhere("password", "=", password)
+      .then(function(result) {
+        console.log(result[0]);
+        if (result[0]) {
+          res.redirect("/menus");
+        } else {
+          res.redirect("/login");
+        }
+      });
+  }
+});
+
+// app.post("/menus/new", (req, res) => {
+//   let username = req.body.username;
+//   let password = req.body.password;
+//   console.log(req.body);
+//
+//   knex("users")
+//     .insert({
+//       username: username,
+//       password: password
+//     })
+//     .then(function(result) {
+//       console.log(result);
+//       res.redirect("/menus/new");
+//     });
+// });
+
 app.get("/menus", (req, res) => {
   return knex("menus")
     .select()
